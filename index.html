@@ -2,8 +2,8 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#070914">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#050711">
 <title>امیر بات | هوش مصنوعی</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,18 +18,16 @@
 }
 
 :root{
-    --bg:#050711;
-    --panel:rgba(13,17,35,.72);
-    --panel2:rgba(18,24,48,.78);
-    --border:rgba(255,255,255,.09);
+    --bg:#03050d;
     --cyan:#00eaff;
-    --blue:#4777ff;
+    --blue:#3d6cff;
     --purple:#9b4dff;
-    --pink:#ff3cac;
+    --pink:#ff2fa3;
     --green:#00ff9d;
-    --red:#ff3864;
-    --text:#f7f9ff;
-    --muted:#8992b0;
+    --red:#ff4168;
+    --white:#f7f9ff;
+    --muted:#7d87a5;
+    --border:rgba(255,255,255,.09);
 }
 
 html{
@@ -37,92 +35,155 @@ html{
 }
 
 body{
-    font-family:"Vazirmatn",sans-serif;
-    background:
-        radial-gradient(circle at 10% 10%,rgba(0,234,255,.10),transparent 28%),
-        radial-gradient(circle at 90% 15%,rgba(155,77,255,.12),transparent 30%),
-        radial-gradient(circle at 50% 90%,rgba(255,60,172,.08),transparent 30%),
-        var(--bg);
-    color:var(--text);
     min-height:100vh;
     overflow-x:hidden;
+    color:var(--white);
+    font-family:"Vazirmatn",sans-serif;
+    background:
+        radial-gradient(circle at 10% 10%,rgba(0,234,255,.13),transparent 27%),
+        radial-gradient(circle at 90% 20%,rgba(155,77,255,.14),transparent 28%),
+        radial-gradient(circle at 50% 100%,rgba(255,47,163,.09),transparent 30%),
+        var(--bg);
 }
 
-/* BACKGROUND */
-.bg{
+/* =========================
+   BACKGROUND
+========================= */
+
+.background{
     position:fixed;
     inset:0;
-    pointer-events:none;
+    z-index:-10;
     overflow:hidden;
-    z-index:-3;
-}
-
-.blob{
-    position:absolute;
-    width:380px;
-    height:380px;
-    border-radius:50%;
-    filter:blur(100px);
-    opacity:.20;
-    animation:float 12s ease-in-out infinite;
-}
-
-.blob.one{
-    background:var(--cyan);
-    top:-160px;
-    right:-100px;
-}
-
-.blob.two{
-    background:var(--purple);
-    left:-160px;
-    top:35%;
-    animation-delay:-4s;
-}
-
-.blob.three{
-    background:var(--pink);
-    right:20%;
-    bottom:-220px;
-    animation-delay:-7s;
-}
-
-@keyframes float{
-    0%,100%{
-        transform:translate(0,0) scale(1);
-    }
-    50%{
-        transform:translate(35px,-30px) scale(1.12);
-    }
+    pointer-events:none;
 }
 
 .grid{
     position:absolute;
     inset:0;
+    opacity:.35;
     background-image:
-        linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
     background-size:45px 45px;
-    mask-image:linear-gradient(to bottom,black,transparent);
+    mask-image:linear-gradient(to bottom,#000,transparent);
 }
 
-/* NAV */
+.glow{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(110px);
+    opacity:.2;
+    animation:glowMove 12s ease-in-out infinite;
+}
+
+.glow1{
+    width:420px;
+    height:420px;
+    background:var(--cyan);
+    top:-190px;
+    right:-120px;
+}
+
+.glow2{
+    width:420px;
+    height:420px;
+    background:var(--purple);
+    top:35%;
+    left:-200px;
+    animation-delay:-4s;
+}
+
+.glow3{
+    width:420px;
+    height:420px;
+    background:var(--pink);
+    bottom:-250px;
+    right:25%;
+    animation-delay:-7s;
+}
+
+@keyframes glowMove{
+    0%,100%{
+        transform:translate(0,0) scale(1);
+    }
+    50%{
+        transform:translate(40px,-35px) scale(1.15);
+    }
+}
+
+/* PARTICLES */
+
+.particles{
+    position:absolute;
+    inset:0;
+}
+
+.particle{
+    position:absolute;
+    width:3px;
+    height:3px;
+    border-radius:50%;
+    background:var(--cyan);
+    box-shadow:
+        0 0 8px var(--cyan),
+        0 0 18px var(--cyan);
+    opacity:.55;
+    animation:
+        particleMove var(--duration) linear infinite,
+        particleGlow 2s ease-in-out infinite;
+}
+
+@keyframes particleMove{
+    from{
+        transform:translateY(110vh);
+    }
+    to{
+        transform:translateY(-20vh);
+    }
+}
+
+@keyframes particleGlow{
+    50%{
+        opacity:.15;
+    }
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
 nav{
     position:sticky;
-    top:14px;
-    z-index:50;
+    top:12px;
+    z-index:100;
     width:min(1180px,calc(100% - 24px));
-    margin:14px auto 0;
-    padding:12px 16px;
+    margin:12px auto 0;
+    padding:11px 15px;
     display:flex;
-    align-items:center;
     justify-content:space-between;
-    gap:15px;
-    border:1px solid var(--border);
+    align-items:center;
+    border:1px solid rgba(255,255,255,.1);
     border-radius:22px;
-    background:rgba(6,9,21,.72);
-    backdrop-filter:blur(20px);
-    box-shadow:0 0 40px rgba(0,234,255,.06);
+    background:rgba(4,7,18,.68);
+    backdrop-filter:blur(25px);
+    box-shadow:
+        0 15px 50px rgba(0,0,0,.3),
+        0 0 35px rgba(0,234,255,.06);
+    animation:navEnter 1s ease both;
+}
+
+@keyframes navEnter{
+    from{
+        opacity:0;
+        transform:translateY(-25px);
+        filter:blur(12px);
+    }
+    to{
+        opacity:1;
+        transform:none;
+        filter:blur(0);
+    }
 }
 
 .logo{
@@ -133,110 +194,264 @@ nav{
     font-size:20px;
 }
 
-.logo-icon{
-    width:40px;
-    height:40px;
+.logoIcon{
+    width:42px;
+    height:42px;
     display:grid;
     place-items:center;
-    border-radius:13px;
-    color:#fff;
-    background:linear-gradient(135deg,var(--cyan),var(--purple),var(--pink));
+    border-radius:14px;
+    background:linear-gradient(
+        135deg,
+        var(--cyan),
+        var(--purple),
+        var(--pink)
+    );
     box-shadow:
-        0 0 15px rgba(0,234,255,.35),
-        0 0 35px rgba(155,77,255,.25);
-    animation:logoPulse 3s infinite;
+        0 0 20px rgba(0,234,255,.4),
+        0 0 45px rgba(155,77,255,.25);
+    animation:
+        logoPulse 2.5s infinite,
+        logoRotate 8s linear infinite;
 }
 
 @keyframes logoPulse{
-    0%,100%{transform:scale(1)}
-    50%{transform:scale(1.07)}
+    0%,100%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.08);
+    }
+}
+
+@keyframes logoRotate{
+    50%{
+        border-radius:19px;
+    }
+}
+
+.navRight{
+    display:flex;
+    align-items:center;
+    gap:15px;
 }
 
 .status{
     display:flex;
     align-items:center;
-    gap:8px;
-    color:#b9c2dd;
-    font-size:13px;
+    gap:7px;
+    color:#9ba6c1;
+    font-size:12px;
 }
 
-.dot{
+.statusDot{
     width:9px;
     height:9px;
     border-radius:50%;
-    background:var(--green);
-    box-shadow:0 0 12px var(--green);
-    animation:blink 1.5s infinite;
+    background:#ffc400;
+    box-shadow:0 0 13px #ffc400;
+    animation:statusBlink 1.5s infinite;
 }
 
-@keyframes blink{
-    50%{opacity:.35}
+@keyframes statusBlink{
+    50%{
+        opacity:.3;
+    }
 }
 
-/* HERO */
+.navButton{
+    color:#fff;
+    text-decoration:none;
+    padding:9px 14px;
+    border-radius:12px;
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.08);
+    font-size:12px;
+    transition:.3s;
+}
+
+.navButton:hover{
+    transform:translateY(-3px);
+    border-color:var(--cyan);
+    box-shadow:0 0 25px rgba(0,234,255,.13);
+}
+
+/* =========================
+   HERO
+========================= */
+
 .hero{
+    position:relative;
     width:min(1100px,calc(100% - 28px));
-    margin:85px auto 45px;
+    min-height:650px;
+    margin:40px auto 0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
     text-align:center;
+    overflow:hidden;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:600px;
+    height:600px;
+    border-radius:50%;
+    background:
+        conic-gradient(
+            from 0deg,
+            transparent,
+            rgba(0,234,255,.08),
+            transparent,
+            rgba(155,77,255,.08),
+            transparent
+        );
+    filter:blur(35px);
+    animation:heroOrb 12s linear infinite;
+}
+
+@keyframes heroOrb{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+.heroContent{
+    position:relative;
+    z-index:2;
+    animation:
+        heroEnter 1.2s cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes heroEnter{
+    0%{
+        opacity:0;
+        transform:translateY(50px) scale(.92);
+        filter:blur(25px);
+    }
+    65%{
+        filter:blur(3px);
+    }
+    100%{
+        opacity:1;
+        transform:none;
+        filter:blur(0);
+    }
 }
 
 .badge{
     display:inline-flex;
     align-items:center;
     gap:8px;
-    padding:8px 15px;
-    border:1px solid rgba(0,234,255,.2);
+    padding:9px 16px;
     border-radius:999px;
-    background:rgba(0,234,255,.055);
-    color:#a9f8ff;
-    font-size:13px;
-    box-shadow:0 0 25px rgba(0,234,255,.08);
-    animation:badgeFloat 3s ease-in-out infinite;
+    color:#b6fbff;
+    background:rgba(0,234,255,.05);
+    border:1px solid rgba(0,234,255,.2);
+    box-shadow:
+        0 0 20px rgba(0,234,255,.08),
+        inset 0 0 20px rgba(0,234,255,.025);
+    animation:
+        badgeFloat 3s ease-in-out infinite,
+        badgeGlow 2s infinite;
 }
 
 @keyframes badgeFloat{
-    50%{transform:translateY(-4px)}
+    50%{
+        transform:translateY(-5px);
+    }
+}
+
+@keyframes badgeGlow{
+    50%{
+        box-shadow:
+            0 0 35px rgba(0,234,255,.15),
+            inset 0 0 20px rgba(0,234,255,.04);
+    }
 }
 
 .hero h1{
-    margin-top:20px;
-    font-size:clamp(50px,10vw,100px);
-    line-height:1;
+    margin-top:25px;
+    font-size:clamp(65px,12vw,130px);
+    line-height:.95;
     font-weight:900;
-    background:linear-gradient(
-        90deg,
-        #fff,
-        var(--cyan),
-        #fff,
-        var(--pink),
-        var(--purple)
-    );
-    background-size:300% auto;
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            var(--cyan),
+            #fff,
+            var(--purple),
+            var(--pink),
+            #fff
+        );
+    background-size:400% auto;
     -webkit-background-clip:text;
     background-clip:text;
     color:transparent;
-    animation:gradientMove 5s linear infinite;
-    filter:drop-shadow(0 0 25px rgba(0,234,255,.18));
+    animation:
+        titleGradient 5s linear infinite,
+        titleFloat 4s ease-in-out infinite;
+    filter:
+        drop-shadow(0 0 20px rgba(0,234,255,.3))
+        drop-shadow(0 0 55px rgba(155,77,255,.18));
 }
 
-@keyframes gradientMove{
-    to{background-position:300% center}
+@keyframes titleGradient{
+    to{
+        background-position:400% center;
+    }
 }
 
-.hero p{
+@keyframes titleFloat{
+    50%{
+        transform:translateY(-7px);
+    }
+}
+
+.heroText{
     max-width:720px;
-    margin:24px auto 0;
-    color:#9ba4c1;
-    line-height:2;
-    font-size:16px;
+    margin:28px auto 0;
+    color:#98a3bf;
+    line-height:2.1;
+    font-size:15px;
+    animation:fadeText 1.7s .3s both;
 }
 
-.hero-buttons{
+@keyframes fadeText{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+        filter:blur(10px);
+    }
+    to{
+        opacity:1;
+        transform:none;
+        filter:blur(0);
+    }
+}
+
+.heroButtons{
     display:flex;
     justify-content:center;
     flex-wrap:wrap;
     gap:12px;
-    margin-top:28px;
+    margin-top:30px;
+    animation:buttonsEnter 1.5s .45s both;
+}
+
+@keyframes buttonsEnter{
+    from{
+        opacity:0;
+        transform:translateY(25px);
+        filter:blur(10px);
+    }
+    to{
+        opacity:1;
+        transform:none;
+        filter:blur(0);
+    }
 }
 
 .btn{
@@ -245,142 +460,291 @@ nav{
     text-decoration:none;
     font-family:inherit;
     font-weight:800;
-    border-radius:15px;
-    padding:13px 22px;
-    transition:.25s;
+    border-radius:16px;
+    padding:14px 24px;
+    transition:.3s;
 }
 
-.btn-primary{
-    color:#001015;
-    background:linear-gradient(135deg,var(--cyan),#73f8ff);
-    box-shadow:0 0 25px rgba(0,234,255,.25);
+.btnPrimary{
+    color:#001014;
+    background:linear-gradient(
+        135deg,
+        var(--cyan),
+        #7cf8ff
+    );
+    box-shadow:
+        0 0 20px rgba(0,234,255,.25),
+        0 0 60px rgba(0,234,255,.08);
 }
 
-.btn-secondary{
+.btnSecondary{
     color:#fff;
     background:rgba(255,255,255,.045);
-    border:1px solid var(--border);
+    border:1px solid rgba(255,255,255,.1);
 }
 
 .btn:hover{
-    transform:translateY(-3px);
-    box-shadow:0 12px 35px rgba(0,234,255,.15);
+    transform:translateY(-5px) scale(1.03);
 }
 
-/* MAIN CHAT */
-.chat-wrap{
-    width:min(1050px,calc(100% - 24px));
-    margin:0 auto 80px;
+/* HERO ORBIT */
+
+.orbit{
+    position:absolute;
+    width:500px;
+    height:500px;
+    border:1px solid rgba(0,234,255,.07);
+    border-radius:50%;
+    animation:orbitRotate 18s linear infinite;
 }
 
-.chat-card{
-    position:relative;
-    overflow:hidden;
-    border:1px solid rgba(255,255,255,.10);
-    border-radius:28px;
-    background:linear-gradient(
-        145deg,
-        rgba(16,21,43,.82),
-        rgba(7,10,23,.88)
-    );
-    box-shadow:
-        0 30px 100px rgba(0,0,0,.45),
-        0 0 50px rgba(0,234,255,.055);
-    backdrop-filter:blur(20px);
-}
-
-.chat-card::before{
+.orbit::before,
+.orbit::after{
     content:"";
     position:absolute;
-    width:300px;
-    height:3px;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--cyan);
+    box-shadow:
+        0 0 15px var(--cyan),
+        0 0 35px var(--cyan);
+}
+
+.orbit::before{
+    top:20px;
+    left:80px;
+}
+
+.orbit::after{
+    bottom:45px;
+    right:60px;
+    background:var(--pink);
+    box-shadow:
+        0 0 15px var(--pink),
+        0 0 35px var(--pink);
+}
+
+@keyframes orbitRotate{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+/* =========================
+   AI CHAT
+========================= */
+
+.chatSection{
+    width:min(1050px,calc(100% - 24px));
+    margin:0 auto 100px;
+}
+
+.reveal{
+    opacity:0;
+    transform:translateY(60px) scale(.96);
+    filter:blur(18px);
+    transition:
+        opacity 1s ease,
+        transform 1s cubic-bezier(.2,.8,.2,1),
+        filter 1s ease;
+}
+
+.reveal.visible{
+    opacity:1;
+    transform:none;
+    filter:blur(0);
+}
+
+.chatCard{
+    position:relative;
+    overflow:hidden;
+    border-radius:30px;
+    border:1px solid rgba(255,255,255,.1);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(16,22,45,.84),
+            rgba(5,8,20,.91)
+        );
+    backdrop-filter:blur(25px);
+    box-shadow:
+        0 35px 100px rgba(0,0,0,.45),
+        0 0 60px rgba(0,234,255,.06);
+}
+
+.chatCard::before{
+    content:"";
+    position:absolute;
     top:0;
-    right:-50px;
-    background:linear-gradient(90deg,transparent,var(--cyan),var(--purple),transparent);
-    filter:blur(1px);
-    animation:lineMove 5s linear infinite;
+    right:-350px;
+    width:350px;
+    height:3px;
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--cyan),
+            var(--purple),
+            var(--pink),
+            transparent
+        );
+    box-shadow:
+        0 0 20px var(--cyan);
+    animation:scan 4s linear infinite;
 }
 
-@keyframes lineMove{
-    from{right:-350px}
-    to{right:100%}
+@keyframes scan{
+    from{
+        right:-350px;
+    }
+    to{
+        right:100%;
+    }
 }
 
-.chat-head{
-    padding:20px;
-    border-bottom:1px solid var(--border);
+.chatHead{
+    padding:18px 20px;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:15px;
+    border-bottom:1px solid var(--border);
 }
 
-.bot-info{
+.botInfo{
     display:flex;
     align-items:center;
     gap:12px;
 }
 
-.bot-avatar{
-    width:52px;
-    height:52px;
+.botAvatar{
+    width:54px;
+    height:54px;
     display:grid;
     place-items:center;
     border-radius:17px;
-    background:linear-gradient(135deg,#091d26,#18113a);
-    border:1px solid rgba(0,234,255,.22);
-    box-shadow:inset 0 0 20px rgba(0,234,255,.08);
     color:var(--cyan);
-    font-size:25px;
+    font-weight:900;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,234,255,.1),
+            rgba(155,77,255,.15)
+        );
+    border:1px solid rgba(0,234,255,.2);
+    box-shadow:
+        inset 0 0 20px rgba(0,234,255,.08),
+        0 0 20px rgba(0,234,255,.08);
+    animation:avatarPulse 2.5s infinite;
+}
+
+@keyframes avatarPulse{
+    50%{
+        box-shadow:
+            inset 0 0 30px rgba(0,234,255,.12),
+            0 0 35px rgba(0,234,255,.13);
+    }
+}
+
+.botTitle{
     font-weight:900;
 }
 
-.bot-title{
-    font-weight:900;
-}
-
-.bot-sub{
-    color:#78829f;
-    font-size:12px;
+.botSub{
     margin-top:3px;
+    color:#77829e;
+    font-size:11px;
 }
 
-.model-status{
-    color:#7d89aa;
-    font-size:12px;
-    text-align:left;
+.modelStatus{
+    color:#7c88a5;
+    font-size:11px;
 }
 
-.chat-body{
-    height:540px;
+.chatBody{
+    height:510px;
     overflow-y:auto;
     padding:22px;
-    scroll-behavior:smooth;
 }
 
-.chat-body::-webkit-scrollbar{
+.chatBody::-webkit-scrollbar{
     width:5px;
 }
 
-.chat-body::-webkit-scrollbar-thumb{
-    background:linear-gradient(var(--cyan),var(--purple));
+.chatBody::-webkit-scrollbar-thumb{
     border-radius:20px;
+    background:linear-gradient(
+        var(--cyan),
+        var(--purple)
+    );
+}
+
+.welcome{
+    text-align:center;
+    padding:65px 10px;
+}
+
+.welcomeIcon{
+    width:80px;
+    height:80px;
+    margin:0 auto 18px;
+    display:grid;
+    place-items:center;
+    border-radius:27px;
+    color:var(--cyan);
+    font-size:34px;
+    border:1px solid rgba(0,234,255,.17);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,234,255,.08),
+            rgba(155,77,255,.13)
+        );
+    box-shadow:0 0 45px rgba(0,234,255,.1);
+    animation:
+        welcomePulse 3s infinite,
+        welcomeRotate 8s linear infinite;
+}
+
+@keyframes welcomePulse{
+    50%{
+        transform:translateY(-7px) scale(1.04);
+        box-shadow:0 0 65px rgba(0,234,255,.18);
+    }
+}
+
+@keyframes welcomeRotate{
+    50%{
+        border-radius:35px;
+    }
+}
+
+.welcome h3{
+    margin-bottom:9px;
+}
+
+.welcome p{
+    color:#78839f;
+    font-size:13px;
 }
 
 .message{
     display:flex;
     margin:13px 0;
-    animation:messageIn .35s ease;
+    animation:
+        messageEnter .5s cubic-bezier(.2,.8,.2,1);
 }
 
-@keyframes messageIn{
+@keyframes messageEnter{
     from{
         opacity:0;
-        transform:translateY(12px) scale(.98);
+        transform:translateY(18px) scale(.96);
+        filter:blur(10px);
     }
     to{
         opacity:1;
         transform:none;
+        filter:blur(0);
     }
 }
 
@@ -395,69 +759,39 @@ nav{
 .bubble{
     max-width:min(78%,650px);
     padding:13px 16px;
-    line-height:1.9;
     font-size:14px;
+    line-height:1.95;
     white-space:pre-wrap;
+    word-break:break-word;
 }
 
 .user .bubble{
-    background:linear-gradient(135deg,rgba(0,234,255,.11),rgba(71,119,255,.12));
-    border:1px solid rgba(0,234,255,.12);
-    border-radius:17px 17px 5px 17px;
+    border-radius:18px 18px 5px 18px;
+    border:1px solid rgba(0,234,255,.13);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,234,255,.1),
+            rgba(71,119,255,.12)
+        );
 }
 
 .bot .bubble{
-    background:rgba(255,255,255,.045);
+    border-radius:18px 18px 18px 5px;
     border:1px solid rgba(255,255,255,.075);
-    border-radius:17px 17px 17px 5px;
+    background:rgba(255,255,255,.045);
 }
 
-.welcome{
-    text-align:center;
-    padding:35px 10px;
-}
-
-.welcome-icon{
-    width:72px;
-    height:72px;
-    margin:0 auto 15px;
-    border-radius:24px;
-    display:grid;
-    place-items:center;
-    font-size:32px;
-    background:linear-gradient(135deg,rgba(0,234,255,.10),rgba(155,77,255,.13));
-    border:1px solid rgba(0,234,255,.18);
-    box-shadow:0 0 40px rgba(0,234,255,.10);
-    animation:welcomePulse 3s infinite;
-}
-
-@keyframes welcomePulse{
-    50%{
-        transform:translateY(-7px) rotate(2deg);
-        box-shadow:0 0 55px rgba(0,234,255,.18);
-    }
-}
-
-.welcome h3{
-    margin-bottom:8px;
-}
-
-.welcome p{
-    color:#7f89a6;
-    font-size:13px;
-}
-
-/* TYPING */
 .typing{
     display:none;
+    width:max-content;
     align-items:center;
     gap:5px;
-    width:max-content;
-    padding:11px 15px;
-    margin:0 0 10px auto;
-    border-radius:17px 17px 17px 5px;
-    background:rgba(255,255,255,.04);
+    margin:0 22px 10px auto;
+    padding:10px 14px;
+    border-radius:18px 18px 18px 5px;
     border:1px solid var(--border);
+    background:rgba(255,255,255,.04);
 }
 
 .typing.show{
@@ -467,51 +801,62 @@ nav{
 .typing span{
     width:7px;
     height:7px;
-    background:var(--cyan);
     border-radius:50%;
+    background:var(--cyan);
+    box-shadow:0 0 8px var(--cyan);
     animation:typeDot 1s infinite;
 }
 
-.typing span:nth-child(2){animation-delay:.15s}
-.typing span:nth-child(3){animation-delay:.3s}
+.typing span:nth-child(2){
+    animation-delay:.15s;
+}
+
+.typing span:nth-child(3){
+    animation-delay:.3s;
+}
 
 @keyframes typeDot{
-    0%,60%,100%{transform:translateY(0);opacity:.4}
-    30%{transform:translateY(-6px);opacity:1}
+    0%,60%,100%{
+        transform:translateY(0);
+        opacity:.3;
+    }
+    30%{
+        transform:translateY(-6px);
+        opacity:1;
+    }
 }
 
-/* INPUT */
-.input-area{
-    border-top:1px solid var(--border);
+.inputArea{
     padding:15px;
-    background:rgba(3,5,14,.38);
+    border-top:1px solid var(--border);
+    background:rgba(2,4,12,.42);
 }
 
-.input-row{
+.inputRow{
     display:flex;
-    align-items:flex-end;
     gap:10px;
+    align-items:flex-end;
 }
 
 textarea{
     flex:1;
-    resize:none;
     min-height:52px;
     max-height:140px;
-    padding:15px;
-    border-radius:17px;
-    border:1px solid rgba(255,255,255,.09);
+    resize:none;
     outline:none;
+    padding:14px 15px;
     color:#fff;
-    background:rgba(255,255,255,.045);
     font-family:inherit;
-    line-height:1.7;
-    transition:.25s;
+    border-radius:17px;
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(255,255,255,.045);
+    transition:.3s;
 }
 
 textarea:focus{
-    border-color:rgba(0,234,255,.4);
-    box-shadow:0 0 25px rgba(0,234,255,.07);
+    border-color:rgba(0,234,255,.45);
+    box-shadow:
+        0 0 25px rgba(0,234,255,.08);
 }
 
 .send{
@@ -519,250 +864,228 @@ textarea:focus{
     height:52px;
     flex-shrink:0;
     border:0;
-    cursor:pointer;
     border-radius:16px;
-    font-size:21px;
+    cursor:pointer;
     color:#001015;
-    background:linear-gradient(135deg,var(--cyan),#6ef9ff);
-    box-shadow:0 0 25px rgba(0,234,255,.20);
-    transition:.25s;
+    font-size:20px;
+    background:linear-gradient(
+        135deg,
+        var(--cyan),
+        #79f8ff
+    );
+    box-shadow:0 0 25px rgba(0,234,255,.22);
+    transition:.3s;
 }
 
 .send:hover{
-    transform:translateY(-3px) rotate(-2deg);
+    transform:translateY(-4px) rotate(-3deg);
 }
 
-.send:disabled{
-    opacity:.45;
+.send:disabled,
+textarea:disabled{
+    opacity:.35;
     cursor:not-allowed;
-    transform:none;
 }
 
 .usage{
     display:flex;
     align-items:center;
-    justify-content:space-between;
     margin-top:10px;
-    font-size:11px;
-    color:#6f7995;
+    color:#6e7894;
+    font-size:10px;
 }
 
 .progress{
-    height:4px;
     flex:1;
+    height:4px;
     margin:0 12px;
-    background:rgba(255,255,255,.06);
-    border-radius:20px;
     overflow:hidden;
+    border-radius:20px;
+    background:rgba(255,255,255,.05);
 }
 
-.progress-bar{
+.progressBar{
+    width:5%;
     height:100%;
-    width:20%;
     border-radius:20px;
-    background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink));
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            var(--purple),
+            var(--pink)
+        );
     box-shadow:0 0 10px var(--cyan);
     transition:.5s;
 }
 
-/* PLANS */
+/* =========================
+   FEATURES
+========================= */
+
 .section{
     width:min(1100px,calc(100% - 28px));
-    margin:0 auto 85px;
+    margin:0 auto 100px;
 }
 
-.section-head{
+.sectionTitle{
     text-align:center;
-    margin-bottom:28px;
+    margin-bottom:30px;
 }
 
-.section-head h2{
-    font-size:clamp(28px,5vw,44px);
+.sectionTitle h2{
+    font-size:clamp(30px,5vw,46px);
     font-weight:900;
 }
 
-.section-head p{
-    color:#77819e;
+.sectionTitle p{
     margin-top:8px;
-    font-size:14px;
+    color:#77819d;
+    font-size:13px;
 }
 
-.plans{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-}
-
-.plan{
-    position:relative;
-    overflow:hidden;
-    padding:23px;
-    border:1px solid var(--border);
-    border-radius:23px;
-    background:rgba(12,16,33,.68);
-    transition:.3s;
-}
-
-.plan:hover{
-    transform:translateY(-7px);
-    border-color:rgba(0,234,255,.22);
-    box-shadow:0 20px 50px rgba(0,0,0,.25);
-}
-
-.plan.featured{
-    border-color:rgba(155,77,255,.35);
-    box-shadow:0 0 35px rgba(155,77,255,.08);
-}
-
-.plan-tag{
-    position:absolute;
-    top:12px;
-    left:12px;
-    padding:4px 9px;
-    border-radius:8px;
-    background:rgba(155,77,255,.15);
-    color:#d0b3ff;
-    font-size:10px;
-}
-
-.plan h3{
-    font-size:20px;
-    margin-bottom:8px;
-}
-
-.plan .price{
-    font-size:22px;
-    font-weight:900;
-    margin:18px 0;
-}
-
-.plan .price small{
-    font-size:11px;
-    color:#77819e;
-    font-weight:400;
-}
-
-.plan ul{
-    list-style:none;
-    color:#8993ae;
-    font-size:12px;
-    line-height:2.5;
-}
-
-.plan li::before{
-    content:"✓";
-    color:var(--green);
-    margin-left:7px;
-}
-
-.plan-btn{
-    width:100%;
-    margin-top:15px;
-    background:rgba(255,255,255,.045);
-    color:#fff;
-    border:1px solid var(--border);
-}
-
-.plan-btn:hover{
-    border-color:var(--cyan);
-}
-
-/* FEATURES */
 .features{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:15px;
+    gap:16px;
 }
 
 .feature{
-    padding:25px;
-    border-radius:22px;
+    position:relative;
+    overflow:hidden;
+    padding:26px;
+    border-radius:23px;
     border:1px solid var(--border);
     background:rgba(12,16,33,.52);
+    transition:.4s;
 }
 
-.feature-icon{
-    width:48px;
-    height:48px;
+.feature::before{
+    content:"";
+    position:absolute;
+    width:100px;
+    height:100px;
+    top:-60px;
+    left:-60px;
+    border-radius:50%;
+    background:var(--cyan);
+    filter:blur(60px);
+    opacity:.12;
+}
+
+.feature:hover{
+    transform:
+        translateY(-10px)
+        scale(1.02);
+    border-color:rgba(0,234,255,.22);
+    box-shadow:
+        0 20px 55px rgba(0,0,0,.25),
+        0 0 35px rgba(0,234,255,.05);
+}
+
+.featureIcon{
+    width:50px;
+    height:50px;
     display:grid;
     place-items:center;
-    border-radius:15px;
-    background:rgba(0,234,255,.08);
+    margin-bottom:15px;
+    border-radius:16px;
     color:var(--cyan);
+    background:rgba(0,234,255,.07);
     font-size:22px;
-    margin-bottom:14px;
+    box-shadow:0 0 25px rgba(0,234,255,.05);
 }
 
 .feature h3{
-    margin-bottom:7px;
+    margin-bottom:8px;
 }
 
 .feature p{
-    color:#77819e;
-    font-size:12px;
+    color:#77819d;
     line-height:1.9;
+    font-size:12px;
 }
 
-/* MODAL */
-.modal{
-    position:fixed;
-    inset:0;
-    z-index:100;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-    background:rgba(0,0,0,.72);
-    backdrop-filter:blur(10px);
-}
+/* =========================
+   CTA
+========================= */
 
-.modal.show{
-    display:flex;
-}
-
-.modal-card{
-    width:min(440px,100%);
-    padding:28px;
-    border-radius:25px;
-    border:1px solid rgba(0,234,255,.16);
-    background:#0b1020;
-    box-shadow:0 30px 100px rgba(0,0,0,.55);
-    animation:modalIn .3s ease;
-}
-
-@keyframes modalIn{
-    from{
-        opacity:0;
-        transform:scale(.92) translateY(20px);
-    }
-    to{
-        opacity:1;
-        transform:none;
-    }
-}
-
-.modal-card h2{
-    margin-bottom:10px;
-}
-
-.modal-card p{
-    color:#818ba7;
-    font-size:13px;
-    line-height:2;
-}
-
-.modal-actions{
-    display:flex;
-    gap:10px;
-    margin-top:20px;
-}
-
-.modal-actions>*{
-    flex:1;
+.cta{
+    width:min(950px,calc(100% - 28px));
+    margin:0 auto 100px;
+    position:relative;
+    overflow:hidden;
+    padding:55px 25px;
     text-align:center;
+    border-radius:30px;
+    border:1px solid rgba(0,234,255,.12);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,234,255,.055),
+            rgba(155,77,255,.065),
+            rgba(255,47,163,.045)
+        );
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.3),
+        inset 0 0 60px rgba(0,234,255,.025);
 }
 
-/* FOOTER */
+.cta::before{
+    content:"";
+    position:absolute;
+    width:250px;
+    height:250px;
+    top:-150px;
+    right:-100px;
+    border-radius:50%;
+    background:var(--cyan);
+    filter:blur(90px);
+    opacity:.15;
+    animation:ctaGlow 4s infinite;
+}
+
+.cta::after{
+    content:"";
+    position:absolute;
+    width:220px;
+    height:220px;
+    bottom:-150px;
+    left:-100px;
+    border-radius:50%;
+    background:var(--pink);
+    filter:blur(90px);
+    opacity:.12;
+}
+
+@keyframes ctaGlow{
+    50%{
+        transform:scale(1.3);
+        opacity:.22;
+    }
+}
+
+.ctaContent{
+    position:relative;
+    z-index:2;
+}
+
+.cta h2{
+    font-size:clamp(28px,5vw,45px);
+}
+
+.cta p{
+    margin:12px auto 25px;
+    max-width:600px;
+    color:#7f89a5;
+    line-height:2;
+    font-size:13px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
 footer{
     width:min(1100px,calc(100% - 28px));
     margin:auto;
@@ -770,114 +1093,124 @@ footer{
     border-top:1px solid var(--border);
     text-align:center;
     color:#59627d;
-    font-size:12px;
+    font-size:11px;
 }
 
-/* LOADING */
-.ai-loading{
+/* =========================
+   MODAL
+========================= */
+
+.modal{
     position:fixed;
     inset:0;
     z-index:200;
-    display:flex;
+    display:none;
     align-items:center;
     justify-content:center;
-    background:#050711;
-    transition:.6s;
+    padding:20px;
+    background:rgba(0,0,0,.7);
+    backdrop-filter:blur(15px);
 }
 
-.ai-loading.hide{
-    opacity:0;
-    pointer-events:none;
+.modal.show{
+    display:flex;
 }
 
-.loader-box{
-    width:min(420px,90%);
+.modalCard{
+    width:min(430px,100%);
+    padding:28px;
+    border-radius:25px;
+    border:1px solid rgba(0,234,255,.18);
+    background:#0a0f20;
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.55),
+        0 0 50px rgba(0,234,255,.07);
+    animation:modalEnter .45s ease both;
+}
+
+@keyframes modalEnter{
+    from{
+        opacity:0;
+        transform:scale(.9) translateY(25px);
+        filter:blur(15px);
+    }
+    to{
+        opacity:1;
+        transform:none;
+        filter:blur(0);
+    }
+}
+
+.modalCard h2{
+    margin-bottom:10px;
+}
+
+.modalCard p{
+    color:#818ba7;
+    font-size:13px;
+    line-height:2;
+}
+
+.modalActions{
+    display:flex;
+    gap:10px;
+    margin-top:20px;
+}
+
+.modalActions>*{
+    flex:1;
     text-align:center;
 }
 
-.loader-logo{
-    width:80px;
-    height:80px;
-    margin:auto;
-    display:grid;
-    place-items:center;
-    border-radius:27px;
-    background:linear-gradient(135deg,var(--cyan),var(--purple),var(--pink));
-    font-size:30px;
-    font-weight:900;
-    box-shadow:
-        0 0 30px rgba(0,234,255,.25),
-        0 0 70px rgba(155,77,255,.15);
-    animation:loaderPulse 2s infinite;
-}
+/* =========================
+   MOBILE
+========================= */
 
-@keyframes loaderPulse{
-    50%{
-        transform:scale(1.08) rotate(2deg);
-    }
-}
-
-.loader-box h2{
-    margin-top:20px;
-}
-
-.loader-box p{
-    color:#727d99;
-    font-size:12px;
-    margin-top:8px;
-    line-height:1.8;
-}
-
-.loader-line{
-    height:5px;
-    margin-top:20px;
-    border-radius:20px;
-    overflow:hidden;
-    background:rgba(255,255,255,.06);
-}
-
-.loader-line div{
-    height:100%;
-    width:10%;
-    background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink));
-    box-shadow:0 0 15px var(--cyan);
-    animation:loaderLine 2s ease-in-out infinite;
-}
-
-@keyframes loaderLine{
-    50%{width:85%}
-}
-
-/* MOBILE */
 @media(max-width:900px){
-    .plans{
-        grid-template-columns:repeat(2,1fr);
-    }
 
     .features{
         grid-template-columns:1fr;
     }
+
+    .orbit{
+        width:400px;
+        height:400px;
+    }
 }
 
 @media(max-width:600px){
+
     nav{
-        top:8px;
-        margin-top:8px;
+        top:7px;
     }
 
     .status{
         display:none;
     }
 
+    .navButton{
+        display:none;
+    }
+
     .hero{
-        margin-top:60px;
+        min-height:600px;
+        margin-top:20px;
     }
 
     .hero h1{
-        font-size:60px;
+        font-size:65px;
     }
 
-    .chat-body{
+    .heroText{
+        font-size:13px;
+    }
+
+    .orbit{
+        width:320px;
+        height:320px;
+    }
+
+    .chatBody{
         height:500px;
         padding:14px;
     }
@@ -886,24 +1219,20 @@ footer{
         max-width:88%;
     }
 
-    .plans{
-        grid-template-columns:1fr;
-    }
-
-    .chat-head{
-        padding:15px;
-    }
-
-    .model-status{
+    .modelStatus{
         display:none;
     }
 
-    .input-area{
+    .chatHead{
+        padding:15px;
+    }
+
+    .inputArea{
         padding:10px;
     }
 
-    .usage{
-        font-size:10px;
+    .cta{
+        padding:45px 20px;
     }
 }
 </style>
@@ -911,99 +1240,149 @@ footer{
 
 <body>
 
-<div class="bg">
-    <div class="blob one"></div>
-    <div class="blob two"></div>
-    <div class="blob three"></div>
-    <div class="grid"></div>
-</div>
+<div class="background">
 
-<!-- AI INITIAL LOADER -->
-<div class="ai-loading" id="aiLoading">
-    <div class="loader-box">
-        <div class="loader-logo">✦</div>
-        <h2>در حال آماده‌سازی امیر بات</h2>
-        <p id="loaderText">
-            مدل هوش مصنوعی در حال آماده شدن است...
-            بار اول ممکن است دانلود مدل کمی زمان ببرد.
-        </p>
-        <div class="loader-line">
-            <div></div>
-        </div>
-    </div>
+    <div class="grid"></div>
+
+    <div class="glow glow1"></div>
+    <div class="glow glow2"></div>
+    <div class="glow glow3"></div>
+
+    <div class="particles" id="particles"></div>
+
 </div>
 
 <nav>
+
     <div class="logo">
-        <div class="logo-icon">✦</div>
-        <span>امیر بات</span>
+
+        <div class="logoIcon">
+            ✦
+        </div>
+
+        <span>
+            امیر بات
+        </span>
+
     </div>
 
-    <div class="status">
-        <span class="dot"></span>
-        <span id="navStatus">در حال آماده‌سازی AI</span>
+    <div class="navRight">
+
+        <a
+            href="plans.html"
+            class="navButton"
+        >
+            پلن‌ها
+        </a>
+
+        <div class="status">
+
+            <span
+                class="statusDot"
+                id="statusDot"
+            ></span>
+
+            <span id="navStatus">
+                در حال آماده‌سازی...
+            </span>
+
+        </div>
+
     </div>
+
 </nav>
 
 <section class="hero">
-    <div class="badge">
-        ✨ هوش مصنوعی محلی و رایگان
+
+    <div class="orbit"></div>
+
+    <div class="heroContent">
+
+        <div class="badge">
+            ✨ هوش مصنوعی رایگان امیر دیوتی
+        </div>
+
+        <h1>
+            امیر بات
+        </h1>
+
+        <p class="heroText">
+            دستیار هوشمند امیر دیوتی؛
+            سوالت رو بپرس، گفتگو کن و جواب بگیر.
+            امیر بات با طراحی نئونی و اجرای هوش مصنوعی داخل مرورگر ساخته شده است.
+        </p>
+
+        <div class="heroButtons">
+
+            <button
+                class="btn btnPrimary"
+                onclick="focusChat()"
+            >
+                شروع گفتگو ✦
+            </button>
+
+            <a
+                href="plans.html"
+                class="btn btnSecondary"
+            >
+                مشاهده پلن‌ها
+            </a>
+
+        </div>
+
     </div>
 
-    <h1>امیر بات</h1>
-
-    <p>
-        دستیار هوشمند امیر دیوتی؛
-        گفتگو کن، سؤال بپرس و جواب بگیر.
-        بدون API Key و بدون نیاز به سرور.
-    </p>
-
-    <div class="hero-buttons">
-        <button class="btn btn-primary" onclick="focusChat()">
-            شروع گفتگو ✦
-        </button>
-
-        <button class="btn btn-secondary" onclick="scrollToPlans()">
-            مشاهده پلن‌ها
-        </button>
-    </div>
 </section>
 
-<section class="chat-wrap" id="chatSection">
+<section
+    class="chatSection reveal"
+    id="chatSection"
+>
 
-    <div class="chat-card">
+    <div class="chatCard">
 
-        <div class="chat-head">
+        <div class="chatHead">
 
-            <div class="bot-info">
+            <div class="botInfo">
 
-                <div class="bot-avatar">
+                <div class="botAvatar">
                     AI
                 </div>
 
                 <div>
-                    <div class="bot-title">
+
+                    <div class="botTitle">
                         امیر بات
                     </div>
 
-                    <div class="bot-sub">
-                        مدل محلی Qwen • اجرای داخل مرورگر
+                    <div class="botSub">
+                        هوش مصنوعی محلی • بدون API Key
                     </div>
+
                 </div>
 
             </div>
 
-            <div class="model-status" id="modelStatus">
-                در حال اتصال...
+            <div
+                class="modelStatus"
+                id="modelStatus"
+            >
+                آماده‌سازی مدل...
             </div>
 
         </div>
 
-        <div class="chat-body" id="chatBody">
+        <div
+            class="chatBody"
+            id="chatBody"
+        >
 
-            <div class="welcome" id="welcome">
+            <div
+                class="welcome"
+                id="welcome"
+            >
 
-                <div class="welcome-icon">
+                <div class="welcomeIcon">
                     ✦
                 </div>
 
@@ -1012,28 +1391,31 @@ footer{
                 </h3>
 
                 <p>
-                    هر چیزی می‌خواهی بپرس؛ وقتی مدل آماده شد شروع می‌کنیم.
+                    صفحه فوراً آماده است؛ هوش مصنوعی در پس‌زمینه در حال آماده شدن است.
                 </p>
 
             </div>
 
         </div>
 
-        <div class="typing" id="typing">
+        <div
+            class="typing"
+            id="typing"
+        >
             <span></span>
             <span></span>
             <span></span>
         </div>
 
-        <div class="input-area">
+        <div class="inputArea">
 
-            <div class="input-row">
+            <div class="inputRow">
 
                 <textarea
                     id="messageInput"
-                    placeholder="پیامت رو بنویس..."
                     rows="1"
                     disabled
+                    placeholder="هوش مصنوعی در حال آماده شدن است..."
                 ></textarea>
 
                 <button
@@ -1050,18 +1432,18 @@ footer{
             <div class="usage">
 
                 <span id="usageText">
-                    آماده‌سازی مدل...
+                    ۵ پیام رایگان روزانه
                 </span>
 
                 <div class="progress">
                     <div
-                        class="progress-bar"
+                        class="progressBar"
                         id="progressBar"
                     ></div>
                 </div>
 
                 <span>
-                    امیر بات
+                    رایگان
                 </span>
 
             </div>
@@ -1072,147 +1454,34 @@ footer{
 
 </section>
 
-<section class="section" id="plans">
+<section class="section reveal">
 
-    <div class="section-head">
-        <h2>پلن‌های امیر بات</h2>
+    <div class="sectionTitle">
+
+        <h2>
+            امکانات امیر بات
+        </h2>
+
         <p>
-            برای نسخه‌های ویژه با پشتیبانی تماس بگیر.
+            ساخته شده با تمرکز روی سرعت، زیبایی و تجربه کاربری
         </p>
-    </div>
 
-    <div class="plans">
-
-        <div class="plan">
-
-            <h3>پایه</h3>
-
-            <div class="price">
-                رایگان
-            </div>
-
-            <ul>
-                <li>۵ پیام در روز</li>
-                <li>مدل AI محلی</li>
-                <li>بدون API Key</li>
-                <li>اجرای داخل مرورگر</li>
-            </ul>
-
-            <button
-                class="btn plan-btn"
-                onclick="showPurchase('پایه')"
-            >
-                فعال است
-            </button>
-
-        </div>
-
-        <div class="plan featured">
-
-            <span class="plan-tag">
-                محبوب
-            </span>
-
-            <h3>حرفه‌ای</h3>
-
-            <div class="price">
-                ۲۹٬۰۰۰
-                <small>تومان / ماه</small>
-            </div>
-
-            <ul>
-                <li>۵۰ پیام در روز</li>
-                <li>دسترسی ویژه</li>
-                <li>پشتیبانی</li>
-                <li>امکانات بیشتر</li>
-            </ul>
-
-            <button
-                class="btn plan-btn"
-                onclick="showPurchase('حرفه‌ای')"
-            >
-                خرید پلن
-            </button>
-
-        </div>
-
-        <div class="plan">
-
-            <h3>VIP</h3>
-
-            <div class="price">
-                ۶۹٬۰۰۰
-                <small>تومان / ماه</small>
-            </div>
-
-            <ul>
-                <li>۲۰۰ پیام در روز</li>
-                <li>دسترسی VIP</li>
-                <li>پشتیبانی ویژه</li>
-                <li>امکانات بیشتر</li>
-            </ul>
-
-            <button
-                class="btn plan-btn"
-                onclick="showPurchase('VIP')"
-            >
-                خرید پلن
-            </button>
-
-        </div>
-
-        <div class="plan">
-
-            <h3>نامحدود</h3>
-
-            <div class="price">
-                ۱۲۹٬۰۰۰
-                <small>تومان / ماه</small>
-            </div>
-
-            <ul>
-                <li>پیام نامحدود</li>
-                <li>دسترسی کامل</li>
-                <li>پشتیبانی ویژه</li>
-                <li>تمام امکانات</li>
-            </ul>
-
-            <button
-                class="btn plan-btn"
-                onclick="showPurchase('نامحدود')"
-            >
-                خرید پلن
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-<section class="section">
-
-    <div class="section-head">
-        <h2>چرا امیر بات؟</h2>
-        <p>
-            ساده، سریع و بدون نیاز به API Key
-        </p>
     </div>
 
     <div class="features">
 
         <div class="feature">
 
-            <div class="feature-icon">
+            <div class="featureIcon">
                 ⚡
             </div>
 
             <h3>
-                اجرای محلی
+                اجرای داخل مرورگر
             </h3>
 
             <p>
-                پردازش متن توسط مدل داخل مرورگر انجام می‌شود
+                مدل هوش مصنوعی مستقیماً روی دستگاه اجرا می‌شود
                 و برای پاسخ‌گویی به API اختصاصی نیاز ندارد.
             </p>
 
@@ -1220,7 +1489,7 @@ footer{
 
         <div class="feature">
 
-            <div class="feature-icon">
+            <div class="featureIcon">
                 🔐
             </div>
 
@@ -1229,27 +1498,50 @@ footer{
             </h3>
 
             <p>
-                هیچ کلید خصوصی در کد سایت قرار نگرفته است.
+                هیچ کلید API خصوصی در فایل سایت قرار نمی‌گیرد.
             </p>
 
         </div>
 
         <div class="feature">
 
-            <div class="feature-icon">
+            <div class="featureIcon">
                 ✨
             </div>
 
             <h3>
-                طراحی RGB
+                افکت‌های RGB
             </h3>
 
             <p>
-                رابط کاربری نئونی با نور، شیشه، انیمیشن
-                و واکنش‌گرایی کامل برای موبایل.
+                نورپردازی، ذرات شناور، بلور، Glow،
+                انیمیشن‌های نرم و طراحی شیشه‌ای.
             </p>
 
         </div>
+
+    </div>
+
+</section>
+
+<section class="cta reveal">
+
+    <div class="ctaContent">
+
+        <h2>
+            آماده‌ای با امیر بات چت کنی؟ 🚀
+        </h2>
+
+        <p>
+            همین الان وارد چت شو و اولین پیام خودت رو ارسال کن.
+        </p>
+
+        <button
+            class="btn btnPrimary"
+            onclick="focusChat()"
+        >
+            شروع گفتگو
+        </button>
 
     </div>
 
@@ -1259,80 +1551,35 @@ footer{
     © ۲۰۲۶ امیر بات — ساخته شده برای امیر دیوتی
 </footer>
 
-<!-- PURCHASE MODAL -->
-<div class="modal" id="purchaseModal">
-
-    <div class="modal-card">
-
-        <h2>
-            فعال‌سازی پلن
-        </h2>
-
-        <p id="purchaseText">
-            برای فعال‌سازی پلن با پشتیبانی تماس بگیر.
-        </p>
-
-        <div class="modal-actions">
-
-            <a
-                class="btn btn-primary"
-                href="https://rubika.ir/amirtbpedit"
-                target="_blank"
-                rel="noopener"
-            >
-                پیام در روبیکا
-            </a>
-
-            <button
-                class="btn btn-secondary"
-                onclick="closeModal()"
-            >
-                بستن
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
 <script type="module">
-
-/*
-=========================================================
-  AMIR BOT
-  Local AI
-  Transformers.js + Qwen2.5-0.5B-Instruct
-=========================================================
-*/
 
 import {
     pipeline,
     env
 } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.8.1";
 
-/*
-    استفاده از کش مرورگر
-*/
 env.useBrowserCache = true;
 env.allowLocalModels = false;
 
+const MODEL =
+    "onnx-community/Qwen2.5-0.5B-Instruct";
 
-/* -----------------------------
-   ELEMENTS
------------------------------ */
+const DAILY_LIMIT = 5;
 
-const loadingScreen =
-    document.getElementById("aiLoading");
+const STORAGE_KEY =
+    "amirbot_usage_v4";
 
-const loaderText =
-    document.getElementById("loaderText");
+let generator = null;
+let aiReady = false;
+let generating = false;
 
-const navStatus =
-    document.getElementById("navStatus");
-
-const modelStatus =
-    document.getElementById("modelStatus");
+let conversation = [
+    {
+        role:"system",
+        content:
+        "تو امیر بات هستی؛ یک دستیار فارسی دوستانه، مفید و دقیق. پاسخ‌ها را به فارسی بده مگر اینکه کاربر زبان دیگری بخواهد."
+    }
+];
 
 const input =
     document.getElementById("messageInput");
@@ -1346,43 +1593,58 @@ const chatBody =
 const typing =
     document.getElementById("typing");
 
+const modelStatus =
+    document.getElementById("modelStatus");
+
+const navStatus =
+    document.getElementById("navStatus");
+
+const statusDot =
+    document.getElementById("statusDot");
+
 const usageText =
     document.getElementById("usageText");
 
 const progressBar =
     document.getElementById("progressBar");
 
+/* PARTICLES */
 
-/* -----------------------------
-   SETTINGS
------------------------------ */
+const particles =
+    document.getElementById("particles");
 
-const DAILY_LIMIT = 5;
+for(let i=0;i<55;i++){
 
-const STORAGE_KEY =
-    "amirbot_local_usage_v1";
+    const p =
+        document.createElement("span");
 
-const MODEL =
-    "onnx-community/Qwen2.5-0.5B-Instruct";
+    p.className =
+        "particle";
 
-let generator = null;
+    p.style.left =
+        Math.random()*100 + "%";
 
-let aiReady = false;
+    p.style.setProperty(
+        "--duration",
+        (8 + Math.random()*16) + "s"
+    );
 
-let generating = false;
+    p.style.animationDelay =
+        (-Math.random()*20) + "s";
 
-let conversation = [
-    {
-        role:"system",
-        content:
-        "تو امیر بات هستی؛ یک دستیار هوشمند فارسی‌زبان، دوستانه، مفید و کوتاه‌گو. پاسخ‌ها را تا حد امکان به زبان فارسی بده."
+    if(Math.random()>.7){
+
+        p.style.background =
+            "#9b4dff";
+
+        p.style.boxShadow =
+            "0 0 8px #9b4dff,0 0 18px #9b4dff";
     }
-];
 
+    particles.appendChild(p);
+}
 
-/* -----------------------------
-   DAILY USAGE
------------------------------ */
+/* DAILY LIMIT */
 
 function getUsage(){
 
@@ -1410,8 +1672,7 @@ function getUsage(){
     return data;
 }
 
-
-function setUsage(data){
+function saveUsage(data){
 
     localStorage.setItem(
         STORAGE_KEY,
@@ -1419,49 +1680,35 @@ function setUsage(data){
     );
 }
 
-
 function updateUsage(){
 
-    const data = getUsage();
+    const data =
+        getUsage();
 
     const remaining =
         Math.max(
             0,
-            DAILY_LIMIT - data.count
+            DAILY_LIMIT-data.count
         );
 
     usageText.textContent =
         `${remaining} پیام از ${DAILY_LIMIT} پیام باقی مانده`;
 
-    const percent =
-        Math.min(
-            100,
-            (data.count / DAILY_LIMIT) * 100
-        );
-
     progressBar.style.width =
-        `${Math.max(percent,5)}%`;
+        Math.max(
+            5,
+            Math.min(
+                100,
+                data.count/DAILY_LIMIT*100
+            )
+        ) + "%";
 }
 
+updateUsage();
 
-/* -----------------------------
-   UI HELPERS
------------------------------ */
+/* MESSAGE */
 
-function hideLoader(){
-
-    setTimeout(() => {
-
-        loadingScreen.classList.add("hide");
-
-    },500);
-}
-
-
-function addMessage(
-    text,
-    type
-){
+function addMessage(text,type){
 
     const welcome =
         document.getElementById("welcome");
@@ -1470,11 +1717,11 @@ function addMessage(
         welcome.remove();
     }
 
-    const wrapper =
+    const message =
         document.createElement("div");
 
-    wrapper.className =
-        `message ${type}`;
+    message.className =
+        "message " + type;
 
     const bubble =
         document.createElement("div");
@@ -1485,49 +1732,36 @@ function addMessage(
     bubble.textContent =
         text;
 
-    wrapper.appendChild(bubble);
+    message.appendChild(bubble);
 
-    chatBody.appendChild(wrapper);
-
-    chatBody.scrollTop =
-        chatBody.scrollHeight;
-}
-
-
-function showTyping(show){
-
-    if(show){
-        typing.classList.add("show");
-    }else{
-        typing.classList.remove("show");
-    }
+    chatBody.appendChild(message);
 
     chatBody.scrollTop =
         chatBody.scrollHeight;
 }
 
+function setTyping(value){
 
-/* -----------------------------
-   LOAD MODEL
------------------------------ */
+    typing.classList.toggle(
+        "show",
+        value
+    );
 
-async function loadAI(){
+    chatBody.scrollTop =
+        chatBody.scrollHeight;
+}
+
+/* AI */
+
+async function startAI(){
 
     try{
 
-        loaderText.textContent =
-            "در حال دانلود و آماده‌سازی مدل...";
-
         navStatus.textContent =
-            "در حال بارگذاری AI";
+            "در حال آماده‌سازی AI...";
 
         modelStatus.textContent =
-            "Loading...";
-
-        /*
-          اگر WebGPU موجود باشد،
-          از آن استفاده می‌کنیم.
-        */
+            "در حال دانلود مدل";
 
         const useGPU =
             "gpu" in navigator;
@@ -1537,7 +1771,9 @@ async function loadAI(){
         };
 
         if(useGPU){
-            options.device = "webgpu";
+
+            options.device =
+                "webgpu";
         }
 
         generator =
@@ -1549,67 +1785,68 @@ async function loadAI(){
 
         aiReady = true;
 
-        loaderText.textContent =
-            "امیر بات آماده است ✨";
-
         navStatus.textContent =
             "آنلاین و آماده پاسخگویی";
 
         modelStatus.textContent =
             useGPU
             ? "AI • WebGPU"
-            : "AI • WASM";
+            : "AI • CPU";
 
-        input.disabled = false;
-        sendBtn.disabled = false;
+        statusDot.style.background =
+            "var(--green)";
+
+        statusDot.style.boxShadow =
+            "0 0 13px var(--green)";
+
+        input.disabled =
+            false;
+
+        sendBtn.disabled =
+            false;
 
         input.placeholder =
             "پیامت رو بنویس...";
-
-        updateUsage();
-
-        hideLoader();
-
-        input.focus();
 
     }catch(error){
 
         console.error(error);
 
-        loaderText.innerHTML =
-            "مدل بارگذاری نشد.<br>صفحه را دوباره باز کنید یا اتصال اینترنت را بررسی کنید.";
-
         navStatus.textContent =
-            "خطا در بارگذاری";
-
-        modelStatus.textContent =
-            "AI Error";
-
-        usageText.textContent =
             "مدل آماده نشد";
 
-        /*
-          صفحه را قفل نمی‌کنیم تا کاربر
-          بتواند دوباره تلاش کند.
-        */
+        modelStatus.textContent =
+            "اتصال را بررسی کنید";
 
-        setTimeout(() => {
+        statusDot.style.background =
+            "var(--red)";
 
-            loadingScreen.classList.add("hide");
+        statusDot.style.boxShadow =
+            "0 0 13px var(--red)";
 
-        },1800);
     }
 }
 
+/*
+    صفحه را متوقف نمی‌کنیم.
+    AI در پس‌زمینه شروع می‌شود.
+*/
 
-/* -----------------------------
-   SEND MESSAGE
------------------------------ */
+setTimeout(
+    startAI,
+    100
+);
+
+/* SEND */
 
 window.sendMessage =
 async function(){
 
-    if(!aiReady || generating){
+    if(
+        !aiReady ||
+        !generator ||
+        generating
+    ){
         return;
     }
 
@@ -1620,13 +1857,15 @@ async function(){
         return;
     }
 
-    const data =
+    const usage =
         getUsage();
 
-    if(data.count >= DAILY_LIMIT){
+    if(
+        usage.count >= DAILY_LIMIT
+    ){
 
         addMessage(
-            "سقف ۵ پیام امروزت تمام شده است. برای استفاده بیشتر می‌توانی پلن ویژه تهیه کنی.",
+            "سقف ۵ پیام رایگان امروزت تمام شده است. برای استفاده بیشتر می‌توانی از صفحه پلن‌ها یک پلن ویژه انتخاب کنی.",
             "bot"
         );
 
@@ -1635,9 +1874,11 @@ async function(){
 
     generating = true;
 
-    sendBtn.disabled = true;
+    input.disabled =
+        true;
 
-    input.disabled = true;
+    sendBtn.disabled =
+        true;
 
     addMessage(
         text,
@@ -1646,9 +1887,12 @@ async function(){
 
     input.value = "";
 
-    data.count++;
+    input.style.height =
+        "52px";
 
-    setUsage(data);
+    usage.count++;
+
+    saveUsage(usage);
 
     updateUsage();
 
@@ -1657,23 +1901,18 @@ async function(){
         content:text
     });
 
-    showTyping(true);
+    setTyping(true);
 
     try{
 
-        /*
-          فقط چند پیام آخر را به مدل می‌دهیم
-          تا مصرف حافظه کمتر شود.
-        */
-
         const recent =
-            conversation.slice(-8);
+            conversation.slice(-7);
 
-        const output =
+        const result =
             await generator(
                 recent,
                 {
-                    max_new_tokens:220,
+                    max_new_tokens:180,
                     do_sample:true,
                     temperature:.7,
                     top_p:.9,
@@ -1685,35 +1924,30 @@ async function(){
         let answer = "";
 
         if(
-            Array.isArray(output) &&
-            output[0]
+            Array.isArray(result) &&
+            result[0]
         ){
 
             answer =
-                output[0].generated_text || "";
-
+                result[0].generated_text;
         }
 
-        /*
-          بعضی نسخه‌ها ممکن است
-          generated_text را به شکل آرایه برگردانند.
-        */
-
-        if(Array.isArray(answer)){
+        if(
+            Array.isArray(answer)
+        ){
 
             const last =
-                answer[answer.length - 1];
+                answer[answer.length-1];
 
-            if(last && last.content){
-
-                answer =
-                    last.content;
-            }
-
+            answer =
+                last?.content ||
+                String(last || "");
         }
 
         answer =
-            String(answer || "").trim();
+            String(
+                answer || ""
+            ).trim();
 
         if(!answer){
 
@@ -1726,7 +1960,7 @@ async function(){
             content:answer
         });
 
-        showTyping(false);
+        setTyping(false);
 
         addMessage(
             answer,
@@ -1737,7 +1971,7 @@ async function(){
 
         console.error(error);
 
-        showTyping(false);
+        setTyping(false);
 
         addMessage(
             "در تولید پاسخ مشکلی پیش آمد. دوباره امتحان کن.",
@@ -1748,23 +1982,21 @@ async function(){
 
         generating = false;
 
-        sendBtn.disabled = false;
+        input.disabled =
+            false;
 
-        input.disabled = false;
+        sendBtn.disabled =
+            false;
 
         input.focus();
-
     }
 };
 
-
-/* -----------------------------
-   ENTER KEY
------------------------------ */
+/* ENTER */
 
 input.addEventListener(
     "keydown",
-    function(event){
+    event => {
 
         if(
             event.key === "Enter" &&
@@ -1774,48 +2006,69 @@ input.addEventListener(
             event.preventDefault();
 
             sendMessage();
-
         }
-
     }
 );
 
-
-/* -----------------------------
-   AUTO RESIZE
------------------------------ */
+/* TEXTAREA */
 
 input.addEventListener(
     "input",
     function(){
 
-        this.style.height = "auto";
+        this.style.height =
+            "auto";
 
         this.style.height =
             Math.min(
                 this.scrollHeight,
                 140
             ) + "px";
-
     }
 );
-
-
-/* -----------------------------
-   START
------------------------------ */
-
-updateUsage();
-
-loadAI();
 
 </script>
 
 <script>
 
-/* -----------------------------
-   GENERAL PAGE FUNCTIONS
------------------------------ */
+/* SCROLL REVEAL */
+
+const revealItems =
+    document.querySelectorAll(".reveal");
+
+const observer =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(
+                entry => {
+
+                    if(
+                        entry.isIntersecting
+                    ){
+
+                        entry.target.classList.add(
+                            "visible"
+                        );
+
+                        observer.unobserve(
+                            entry.target
+                        );
+                    }
+                }
+            );
+
+        },
+        {
+            threshold:.12
+        }
+    );
+
+revealItems.forEach(
+    item => observer.observe(item)
+);
+
+/* CHAT */
 
 function focusChat(){
 
@@ -1826,69 +2079,25 @@ function focusChat(){
             block:"center"
         });
 
-    setTimeout(() => {
+    setTimeout(
+        () => {
 
-        const input =
-            document.getElementById("messageInput");
+            const input =
+                document.getElementById(
+                    "messageInput"
+                );
 
-        if(input && !input.disabled){
-            input.focus();
-        }
-
-    },600);
-}
-
-
-function scrollToPlans(){
-
-    document
-        .getElementById("plans")
-        .scrollIntoView({
-            behavior:"smooth"
-        });
-
-}
-
-
-function showPurchase(plan){
-
-    const modal =
-        document.getElementById("purchaseModal");
-
-    const text =
-        document.getElementById("purchaseText");
-
-    text.textContent =
-        `برای فعال‌سازی پلن «${plan}» به پشتیبانی امیر بات در روبیکا پیام بده: @amirtbpedit`;
-
-    modal.classList.add("show");
-
-}
-
-
-function closeModal(){
-
-    document
-        .getElementById("purchaseModal")
-        .classList.remove("show");
-
-}
-
-
-document
-    .getElementById("purchaseModal")
-    .addEventListener(
-        "click",
-        function(e){
-
-            if(e.target === this){
-
-                closeModal();
-
+            if(
+                input &&
+                !input.disabled
+            ){
+                input.focus();
             }
 
-        }
+        },
+        700
     );
+}
 
 </script>
 
