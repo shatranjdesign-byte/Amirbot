@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#050711">
+<title>پلن‌های امیر بات</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+    --bg:#03050d;
+    --cyan:#00eaff;
+    --blue:#4777ff;
+    --purple:#9b4dff;
+    --pink:#ff2fa3;
+    --green:#00ff9d;
+    --white:#f7f9ff;
+    --muted:#7d87a5;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    overflow-x:hidden;
+    color:var(--white);
+    font-family:"Vazirmatn",sans-serif;
+    background:
+        radial-gradient(circle at 10% 10%,rgba(0,234,255,.13),transparent 28%),
+        radial-gradient(circle at 90% 20%,rgba(155,77,255,.14),transparent 28%),
+        radial-gradient(circle at 50% 100%,rgba(255,47,163,.1),transparent 30%),
+        var(--bg);
+}
+
+/* BACKGROUND */
+
+.background{
+    position:fixed;
+    inset:0;
+    z-index:-10;
+    overflow:hidden;
+}
+
+.grid{
+    position:absolute;
+    inset:0;
+    background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size:45px 45px;
+    mask-image:linear-gradient(to bottom,#000,transparent);
+}
+
+.glow{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(110px);
+    opacity:.2;
+    animation:float 12s ease-in-out infinite;
+}
+
+.g1{
+    width:430px;
+    height:430px;
+    background:var(--cyan);
+    top:-190px;
+    right:-120px;
+}
+
+.g2{
+    width:430px;
+    height:430px;
+    background:var(--purple);
+    left:-210px;
+    top:40%;
+    animation-delay:-4s;
+}
+
+.g3{
+    width:430px;
+    height:430px;
+    background:var(--pink);
+    bottom:-250px;
+    right:25%;
+    animation-delay:-7s;
+}
+
+@keyframes float{
+    50%{
+        transform:translate(40px,-35px) scale(1.12);
+    }
+}
+
+/* NAV */
+
+nav{
+    position:sticky;
+    top:12px;
+    z-index:50;
+    width:min(1180px,calc(100% - 24px));
+    margin:12px auto;
+    padding:11px 15px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-radius:22px;
+    border:1px solid rgba(255,255,255,.1);
+    background:rgba(4,7,18,.7);
+    backdrop-filter:blur(25px);
+    animation:enter .9s both;
+}
+
+@keyframes enter{
+    from{
+        opacity:0;
+        transform:translateY(-25px);
+        filter:blur(15px);
+    }
+    to{
+        opacity:1;
+        transform:none;
+        filter:blur(0);
+    }
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:20px;
+    font-weight:900;
+}
+
+.logoIcon{
+    width:42px;
+    height:42px;
+    display:grid;
+    place-items:center;
+    border-radius:14px;
+    background:linear-gradient(
+        135deg,
+        var(--cyan),
+        var(--purple),
+        var(--pink)
+    );
+    box-shadow:0 0 30px rgba(0,234,255,.3);
+    animation:pulse 2.5s infinite;
+}
+
+@keyframes pulse{
+    50%{
+        transform:scale(1.08);
+    }
+}
+
+.back{
+    color:#fff;
+    text-decoration:none;
+    padding:9px 15px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.09);
+    background:rgba(255,255,255,.04);
+    font-size:12px;
+    transition:.3s;
+}
+
+.back:hover{
+    transform:translateY(-3px);
+    border-color:var(--cyan);
+    box-shadow:0 0 25px rgba(0,234,255,.1);
+}
+
+/* HEADER */
+
+.header{
+    width:min(1000px,calc(100% - 28px));
+    margin:90px auto 55px;
+    text-align:center;
+    animation:hero .9s .1s both;
+}
+
+@keyframes hero{
+    from{
+        opacity:0;
+        transform:translateY(40px) scale(.95);
+        filter:blur(20px);
+    }
+    to{
+        opacity:1;
+        transform:none;
+        filter:blur(0);
+    }
+}
+
+.badge{
+    display:inline-block;
+    padding:8px 15px;
+    border-radius:999px;
+    color:#b5fbff;
+    border:1px solid rgba(0,234,255,.2);
+    background:rgba(0,234,255,.05);
+    box-shadow:0 0 30px rgba(0,234,255,.08);
+}
+
+h1{
+    margin-top:23px;
+    font-size:clamp(45px,9vw,85px);
+    font-weight:900;
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            var(--cyan),
+            #fff,
+            var(--purple),
+            var(--pink)
+        );
+    background-size:300% auto;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    animation:gradient 5s linear infinite;
+}
+
+@keyframes gradient{
+    to{
+        background-position:300% center;
+    }
+}
+
+.header p{
+    max-width:650px;
+    margin:18px auto;
+    color:#808aa6;
+    line-height:2;
+    font-size:13px;
+}
+
+/* PLANS */
+
+.plans{
+    width:min(1100px,calc(100% - 28px));
+    margin:0 auto 80px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.plan{
+    position:relative;
+    overflow:hidden;
+    padding:28px 22px;
+    min-height:410px;
+    border-radius:27px;
+    border:1px solid rgba(255,255,255,.09);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(16,22,44,.82),
+            rgba(6,9,20,.9)
+        );
+    backdrop-filter:blur(18px);
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.3);
+    opacity:0;
+    transform:
+        translateY(80px)
+        scale(.92);
+    filter:blur(18px);
+    animation:
+        planEnter 1s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+.plan:nth-child(1){
+    animation-delay:.15s;
+}
+
+.plan:nth-child(2){
+    animation-delay:.3s;
+}
+
+.plan:nth-child(3){
+    animation-delay:.45s;
+}
+
+.plan:nth-child(4){
+    animation-delay:.6s;
+}
+
+@keyframes planEnter{
+    to{
+        opacity:1;
+        transform:none;
+        filter:blur(0);
+    }
+}
+
+.plan::before{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    top:-110px;
+    left:-80px;
+    border-radius:50%;
+    background:var(--cyan);
+    filter:blur(70px);
+    opacity:.11;
+    transition:.5s;
+}
+
+.plan:hover::before{
+    transform:scale(2);
+    opacity:.18;
+}
+
+.plan:hover{
+    transform:translateY(-12px) scale(1.02);
+    border-color:rgba(0,234,255,.28);
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.4),
+        0 0 45px rgba(0,234,255,.08);
+}
+
+.plan.featured{
+    border-color:rgba(155,77,255,.35);
+    box-shadow:
+        0 0 50px rgba(155,77,255,.08),
+        0 25px 70px rgba(0,0,0,.3);
+}
+
+.plan.featured::after{
+    content:"محبوب";
+    position:absolute;
+    top:16px;
+    left:16px;
+    padding:5px 10px;
+    border-radius:9px;
+    color:#d9c2ff;
+    background:rgba(155,77,255,.15);
+    border:1px solid rgba(155,77,255,.2);
+    font-size:10px;
+}
+
+.planIcon{
+    width:58px;
+    height:58px;
+    display:grid;
+    place-items:center;
+    border-radius:19px;
+    margin-bottom:20px;
+    color:var(--cyan);
+    font-size:25px;
+    background:rgba(0,234,255,.07);
+    border:1px solid rgba(0,234,255,.12);
+    box-shadow:0 0 25px rgba(0,234,255,.06);
+}
+
+.plan h2{
+    font-size:22px;
+}
+
+.price{
+    margin:17px 0 20px;
+    font-size:25px;
+    font-weight:900;
+}
+
+.price small{
+    color:#77819c;
+    font-size:10px;
+    font-weight:400;
+}
+
+ul{
+    list-style:none;
+    color:#8b95b0;
+    font-size:12px;
+    line-height:2.7;
+}
+
+li::before{
+    content:"✓";
+    color:var(--green);
+    margin-left:8px;
+    text-shadow:0 0 8px var(--green);
+}
+
+.buy{
+    width:100%;
+    margin-top:20px;
+    border:0;
+    cursor:pointer;
+    padding:13px;
+    border-radius:15px;
+    color:#fff;
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.09);
+    font-family:inherit;
+    font-weight:800;
+    transition:.3s;
+}
+
+.buy:hover{
+    transform:translateY(-4px);
+    color:#001014;
+    background:linear-gradient(
+        135deg,
+        var(--cyan),
+        #73f8ff
+    );
+    box-shadow:0 0 30px rgba(0,234,255,.18);
+}
+
+/* INFO */
+
+.info{
+    width:min(900px,calc(100% - 28px));
+    margin:0 auto 80px;
+    padding:30px;
+    text-align:center;
+    border-radius:25px;
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(12,16,33,.5);
+    animation:enter 1s .8s both;
+}
+
+.info h3{
+    margin-bottom:10px;
+}
+
+.info p{
+    color:#78839e;
+    font-size:13px;
+    line-height:2;
+}
+
+/* MODAL */
+
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:100;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:rgba(0,0,0,.72);
+    backdrop-filter:blur(15px);
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modalCard{
+    width:min(430px,100%);
+    padding:28px;
+    border-radius:25px;
+    border:1px solid rgba(0,234,255,.18);
+    background:#0a0f20;
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.55),
+        0 0 50px rgba(0,234,255,.08);
+    animation:modal .45s both;
+}
+
+@keyframes modal{
+    from{
+        opacity:0;
+        transform:scale(.88) translateY(30px);
+        filter:blur(18px);
+    }
+    to{
+        opacity:1;
+        transform:none;
+        filter:blur(0);
+    }
+}
+
+.modalCard h2{
+    margin-bottom:10px;
+}
+
+.modalCard p{
+    color:#818ba7;
+    font-size:13px;
+    line-height:2;
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+    margin-top:20px;
+}
+
+.actions>*{
+    flex:1;
+    text-align:center;
+    padding:13px;
+    border-radius:14px;
+    font-family:inherit;
+    font-weight:800;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+.rubika{
+    color:#001014;
+    background:linear-gradient(
+        135deg,
+        var(--cyan),
+        #72f8ff
+    );
+}
+
+.close{
+    color:#fff;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.1);
+}
+
+/* FOOTER */
+
+footer{
+    width:min(1100px,calc(100% - 28px));
+    margin:auto;
+    padding:30px 0 45px;
+    border-top:1px solid rgba(255,255,255,.08);
+    text-align:center;
+    color:#59627d;
+    font-size:11px;
+}
+
+/* MOBILE */
+
+@media(max-width:950px){
+
+    .plans{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+
+    nav{
+        top:7px;
+    }
+
+    .plans{
+        grid-template-columns:1fr;
+    }
+
+    .plan{
+        min-height:auto;
+    }
+
+    .header{
+        margin-top:65px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background">
+
+    <div class="grid"></div>
+
+    <div class="glow g1"></div>
+    <div class="glow g2"></div>
+    <div class="glow g3"></div>
+
+</div>
+
+<nav>
+
+    <div class="logo">
+
+        <div class="logoIcon">
+            ✦
+        </div>
+
+        <span>
+            امیر بات
+        </span>
+
+    </div>
+
+    <a
+        href="index.html"
+        class="back"
+    >
+        ← بازگشت به امیر بات
+    </a>
+
+</nav>
+
+<section class="header">
+
+    <div class="badge">
+        ✨ پلن‌های امیر بات
+    </div>
+
+    <h1>
+        انتخاب پلن
+    </h1>
+
+    <p>
+        پلن مناسب خودت را انتخاب کن و امکانات بیشتری
+        برای استفاده از امیر بات دریافت کن.
+    </p>
+
+</section>
+
+<section class="plans">
+
+    <div class="plan">
+
+        <div class="planIcon">
+            ✦
+        </div>
+
+        <h2>
+            پایه
+        </h2>
+
+        <div class="price">
+            رایگان
+        </div>
+
+        <ul>
+            <li>۵ پیام در روز</li>
+            <li>هوش مصنوعی محلی</li>
+            <li>بدون API Key</li>
+            <li>بدون پرداخت</li>
+            <li>دسترسی به چت</li>
+        </ul>
+
+        <button
+            class="buy"
+            onclick="showPlan('پایه')"
+        >
+            فعال است
+        </button>
+
+    </div>
+
+    <div class="plan featured">
+
+        <div class="planIcon">
+            ⚡
+        </div>
+
+        <h2>
+            حرفه‌ای
+        </h2>
+
+        <div class="price">
+            ۲۹٬۰۰۰
+            <small>
+                تومان / ماه
+            </small>
+        </div>
+
+        <ul>
+            <li>۵۰ پیام در روز</li>
+            <li>دسترسی ویژه</li>
+            <li>پشتیبانی</li>
+            <li>امکانات بیشتر</li>
+            <li>اولویت دسترسی</li>
+        </ul>
+
+        <button
+            class="buy"
+            onclick="showPlan('حرفه‌ای')"
+        >
+            خرید پلن
+        </button>
+
+    </div>
+
+    <div class="plan">
+
+        <div class="planIcon">
+            💎
+        </div>
+
+        <h2>
+            VIP
+        </h2>
+
+        <div class="price">
+            ۶۹٬۰۰۰
+            <small>
+                تومان / ماه
+            </small>
+        </div>
+
+        <ul>
+            <li>۲۰۰ پیام در روز</li>
+            <li>دسترسی VIP</li>
+            <li>پشتیبانی ویژه</li>
+            <li>امکانات بیشتر</li>
+            <li>اولویت بالاتر</li>
+        </ul>
+
+        <button
+            class="buy"
+            onclick="showPlan('VIP')"
+        >
+            خرید پلن
+        </button>
+
+    </div>
+
+    <div class="plan">
+
+        <div class="planIcon">
+            ∞
+        </div>
+
+        <h2>
+            نامحدود
+        </h2>
+
+        <div class="price">
+            ۱۲۹٬۰۰۰
+            <small>
+                تومان / ماه
+            </small>
+        </div>
+
+        <ul>
+            <li>پیام نامحدود</li>
+            <li>دسترسی کامل</li>
+            <li>پشتیبانی ویژه</li>
+            <li>تمام امکانات</li>
+            <li>دسترسی کامل</li>
+        </ul>
+
+        <button
+            class="buy"
+            onclick="showPlan('نامحدود')"
+        >
+            خرید پلن
+        </button>
+
+    </div>
+
+</section>
+
+<section class="info">
+
+    <h3>
+        💬 فعال‌سازی پلن
+    </h3>
+
+    <p>
+        برای خرید یا فعال‌سازی هرکدام از پلن‌های ویژه،
+        به پشتیبانی امیر بات در روبیکا پیام بده.
+        بعد از هماهنگی، پلن برایت فعال می‌شود.
+    </p>
+
+</section>
+
+<footer>
+    © ۲۰۲۶ امیر بات — ساخته شده برای امیر دیوتی
+</footer>
+
+<div
+    class="modal"
+    id="modal"
+>
+
+    <div class="modalCard">
+
+        <h2>
+            فعال‌سازی پلن
+        </h2>
+
+        <p id="modalText">
+            برای فعال‌سازی به پشتیبانی پیام بده.
+        </p>
+
+        <div class="actions">
+
+            <a
+                href="https://rubika.ir/amirtbpedit"
+                target="_blank"
+                rel="noopener"
+                class="rubika"
+            >
+                پیام در روبیکا
+            </a>
+
+            <button
+                class="close"
+                onclick="closeModal()"
+            >
+                بستن
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function showPlan(plan){
+
+    document.getElementById(
+        "modalText"
+    ).textContent =
+        `برای خرید یا فعال‌سازی پلن «${plan}» به پشتیبانی امیر بات در روبیکا پیام بده: @amirtbpedit`;
+
+    document
+        .getElementById("modal")
+        .classList.add("show");
+}
+
+function closeModal(){
+
+    document
+        .getElementById("modal")
+        .classList.remove("show");
+}
+
+document
+    .getElementById("modal")
+    .addEventListener(
+        "click",
+        function(e){
+
+            if(e.target === this){
+                closeModal();
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+</html>
